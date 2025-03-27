@@ -1,0 +1,5 @@
+G:\Prog\TimeBook\obj\Debug\net6.0\TimeBook.csproj.AssemblyReference.cache
+G:\Prog\TimeBook\obj\Debug\net6.0\TimeBook.GeneratedMSBuildEditorConfig.editorconfig
+G:\Prog\TimeBook\obj\Debug\net6.0\TimeBook.AssemblyInfoInputs.cache
+G:\Prog\TimeBook\obj\Debug\net6.0\TimeBook.AssemblyInfo.cs
+G:\Prog\TimeBook\obj\Debug\net6.0\TimeBook.csproj.CoreCompileInputs.cache

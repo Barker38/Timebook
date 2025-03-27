@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        /* Дополнительные стили для админки */
+        .card-scanned {
+            border-color: #4CAF50 !important;
+            background-color: #f8fff8;
+        }
+        
+        .alert {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: white;
+            z-index: 1000;
+            animation: slideIn 0.3s forwards;
+        }
+        
+        .alert-success {
+            background-color: #4CAF50;
+        }
+        
+        .alert-error {
+            background-color: #f44336;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div id="connection-status" class="connection-status">
+        <i class="fas fa-circle"></i> <span>Подключение...</span>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-user-shield"></i> Панель администратора</h1>
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <span class="counter" id="total-employees">0</span>
+                    <span>Сотрудников</span>
+                </div>
+                <div class="dashboard-item">
+                    <span class="counter" id="active-employees">0</span>
+                    <span>На работе</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="controls">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Поиск сотрудников...">
+            </div>
+            <button id="add-employee-btn" class="btn-primary">
+                <i class="fas fa-user-plus"></i> Добавить сотрудника
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table id="employees-table">
+                <thead>
+                    <tr>
+                        <th>Номер карты</th>
+                        <th>ФИО</th>
+                        <th>Должность</th>
+                        <th>Статус</th>
+                        <th>Последняя отметка</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Модальное окно -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modal-title"><i class="fas fa-user-plus"></i> Добавить сотрудника</h2>
+                <form id="employee-form">
+                    <input type="hidden" id="employee-id">
+                    <div class="form-group">
+                        <label for="card-number"><i class="fas fa-id-card"></i> Номер карты*:</label>
+                        <input type="text" id="card-number" required>
+                        <div id="card-status" class="card-status"></div>
+                        <div class="scan-hint">
+                            <i class="fas fa-rfid"></i> Приложите карту к считывателю
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="employee-name"><i class="fas fa-user"></i> ФИО*:</label>
+                        <input type="text" id="employee-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="employee-position"><i class="fas fa-briefcase"></i> Должность:</label>
+                        <input type="text" id="employee-position">
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Сохранить
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Отчеты -->
+        <div class="reports-container">
+            <h2><i class="fas fa-file-excel"></i> Отчеты</h2>
+            <div class="report-controls">
+                <div class="form-group">
+                    <label for="report-employee"><i class="fas fa-user"></i> Сотрудник</label>
+                    <select id="report-employee">
+                        <option value="">Все сотрудники</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="report-start"><i class="fas fa-calendar-alt"></i> Начальная дата</label>
+                    <input type="date" id="report-start">
+                </div>
+                <div class="form-group">
+                    <label for="report-end"><i class="fas fa-calendar-alt"></i> Конечная дата</label>
+                    <input type="date" id="report-end">
+                </div>
+                <button id="generate-report" class="btn-primary">
+                    <i class="fas fa-chart-bar"></i> Сформировать
+                </button>
+                <button id="export-excel" class="btn-secondary">
+                    <i class="fas fa-file-export"></i> Excel
+                </button>
+            </div>
+            <div class="report-table-container">
+                <table id="report-table">
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Сотрудник</th>
+                            <th>Приход</th>
+                            <th>Уход</th>
+                            <th>Отработано</th>
+                            <th>Примечание</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">Итого:</td>
+                            <td id="total-hours">0 ч</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const panel = new AdminPanel();
+            
+            // Для тестирования вручную:
+            window.testCard = (cardNumber) => {
+                panel.handleCardScan({ cardNumber });
+            };
+        });
+        </script>
+</body>
+</html>

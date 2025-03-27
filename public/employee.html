@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeBook - Учет рабочего времени</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="employee.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Анимация пульсации */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Стили для сообщений */
+        .greeting-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 24px;
+            z-index: 1000;
+            animation: fadeInOut 3s forwards;
+            display: none;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="connection-status" class="connection-status">
+        <i class="fas fa-circle"></i> <span>Подключение...</span>
+    </div>
+
+    <!-- Сообщение приветствия/прощания -->
+    <div id="greeting-message" class="greeting-message"></div>
+
+    <div class="employee-container">
+        <div class="employee-card">
+            <div id="status-icon">
+                <i class="fas fa-id-card"></i>
+            </div>
+            <h1 id="message">Приложите карту</h1>
+            <div id="details">
+                <div id="employee-name">-</div>
+                <div id="time-info">
+                    <div><i class="fas fa-clock"></i> <span id="current-time">-</span></div>
+                    <div id="work-duration-container" style="display: none;">
+                        <i class="fas fa-business-time"></i> <span id="work-duration">-</span>
+                    </div>
+                </div>
+                <div id="error-message" class="error-message"></div>
+            </div>
+        </div>
+        <div class="last-checkins">
+            <h3><i class="fas fa-history"></i> Последние отметки:</h3>
+            <ul id="last-checkins-list"></ul>
+        </div>
+    </div>
+
+    <script src="employee.js"></script>
+</body>
+</html>
