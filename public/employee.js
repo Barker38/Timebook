@@ -117,6 +117,9 @@ class EmployeeScreen {
         try {
             this.currentEmployee = data.employee;
             
+            // Обновляем статус сразу после получения данных
+            this.employeeName.textContent = `${this.currentEmployee.name}${this.currentEmployee.position ? ` (${this.currentEmployee.position})` : ''}`;
+            
             const statusResponse = await fetch(`/api/employees/${this.currentEmployee.id}/status`);
             if (statusResponse.ok) {
                 const status = await statusResponse.json();
@@ -129,7 +132,6 @@ class EmployeeScreen {
                     this.showStatus('success', 'Приход регистрируется...', 'fa-spinner fa-spin');
                 }
                 
-                this.employeeName.textContent = `${this.currentEmployee.name}${this.currentEmployee.position ? ` (${this.currentEmployee.position})` : ''}`;
                 await this.fetchLastCheckins(this.currentEmployee.id);
                 
                 if (status.is_active) {
@@ -141,6 +143,7 @@ class EmployeeScreen {
             }
         } catch (error) {
             console.error('Error handling valid card:', error);
+            this.showStatus('error', 'Ошибка обработки карты', 'fa-exclamation-circle');
         }
     }
 

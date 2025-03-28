@@ -49,3 +49,4 @@ G:\Prog\TimeBook\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
 G:\Prog\TimeBook\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
 G:\Prog\TimeBook\bin\Debug\net9.0\Serilog.Settings.Configuration.dll
 G:\Prog\TimeBook\bin\Debug\net9.0\System.Net.Http.Json.dll
+G:\Prog\TimeBook\obj\Debug\net9.0\TimeBook.sourcelink.json

@@ -285,9 +285,13 @@ app.get('/api/report', async (req, res) => {
         const { start, end, employee } = req.query;
         let query = `
             SELECT 
+                e.id as employee_id,
                 e.name as employee_name,
+                e.card_number,
+                c.id as checkin_id,
                 c.checkin_time,
                 c.checkout_time,
+                c.notes,
                 CASE 
                     WHEN c.checkout_time IS NULL THEN NULL
                     ELSE EXTRACT(EPOCH FROM (c.checkout_time - c.checkin_time))/60
@@ -295,7 +299,7 @@ app.get('/api/report', async (req, res) => {
             FROM checkins c
             JOIN employees e ON e.id = c.employee_id
             WHERE ($1::date IS NULL OR c.checkin_time >= $1::date)
-              AND ($2::date IS NULL OR c.checkout_time <= $2::date OR c.checkout_time IS NULL)
+              AND ($2::date IS NULL OR c.checkin_time <= $2::date)
         `;
         
         const params = [start || null, end || null];

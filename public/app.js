@@ -361,7 +361,7 @@ handleValidCard(data) {
         tbody.innerHTML = '';
         
         let totalMinutes = 0;
-
+    
         data.forEach(record => {
             const row = document.createElement('tr');
             
@@ -381,7 +381,7 @@ handleValidCard(data) {
             
             row.innerHTML = `
                 <td>${checkinTime.toLocaleDateString('ru-RU')}</td>
-                <td>${record.employee_name}</td>
+                <td>${record.employee_name || 'Неизвестный'}</td>
                 <td>${checkinTime.toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'})}</td>
                 <td>${checkoutTime ? checkoutTime.toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'}) : '-'}</td>
                 <td>${duration}</td>
@@ -390,7 +390,7 @@ handleValidCard(data) {
             
             tbody.appendChild(row);
         });
-
+    
         const totalHours = Math.floor(totalMinutes / 60);
         const remainingMinutes = totalMinutes % 60;
         document.getElementById('total-hours').textContent = 
