@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TimeBook")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ec750052f9833f88e02db8604999d68f65642ff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d0fdb0e6dfa410b2b727ca3a04e735fd9a92809")]
 [assembly: System.Reflection.AssemblyProductAttribute("TimeBook")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TimeBook")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

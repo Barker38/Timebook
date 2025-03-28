@@ -174,5 +174,45 @@
             };
         });
         </script>
+        <script>
+            // Функция загрузки и обновления статусов
+            async function updateEmployeeStatuses() {
+              try {
+                const response = await fetch('/api/employees/status');
+                if (!response.ok) throw new Error('Ошибка сервера');
+                
+                const employees = await response.json();
+                const tableBody = document.getElementById('employees-table-body');
+                
+                // Очищаем таблицу перед обновлением
+                tableBody.innerHTML = '';
+                
+                // Заполняем новыми данными
+                employees.forEach(emp => {
+                  const row = document.createElement('tr');
+                  row.innerHTML = `
+                    <td>${emp.id}</td>
+                    <td>${emp.name}</td>
+                    <td class="status-cell">
+                      <span class="badge ${emp.is_working ? 'bg-success' : 'bg-danger'}">
+                        ${emp.is_working ? 'На работе' : 'Ушёл'}
+                      </span>
+                    </td>
+                  `;
+                  tableBody.appendChild(row);
+                });
+                
+                console.log('Статусы обновлены');
+              } catch (error) {
+                console.error('Ошибка при обновлении:', error);
+              }
+            }
+            
+            // Запускаем при загрузке страницы и каждые 5 секунд
+            document.addEventListener('DOMContentLoaded', () => {
+              updateEmployeeStatuses();
+              setInterval(updateEmployeeStatuses, 5000);
+            });
+            </script>
 </body>
 </html>

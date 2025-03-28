@@ -113,3 +113,322 @@ System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed t
    at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
    at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
    at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+2025-03-28 09:29:30.244 +08:00 [INF] Starting RFID Server...
+2025-03-28 09:29:30.300 +08:00 [INF] Connecting to WebSocket...
+2025-03-28 09:29:30.348 +08:00 [INF] WebSocket connected successfully
+2025-03-28 09:29:30.362 +08:00 [INF] RFID reader connected to COM3
+2025-03-28 09:29:45.229 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:29:45.233 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:29:45.236 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:29:45.284 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:29:45.315 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:29:45.575 +08:00 [DBG] Received data: No card
+2025-03-28 09:30:34.699 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:30:34.702 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:30:34.702 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:30:34.703 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:30:34.706 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:30:35.038 +08:00 [DBG] Received data: No card
+2025-03-28 09:33:11.916 +08:00 [INF] Cleaning up resources...
+2025-03-28 09:33:11.918 +08:00 [ERR] Error processing serial port data
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Z2M_Mifare.Program.ProcessSerialPort() in G:\Prog\TimeBook\Program.cs:line 122
+2025-03-28 09:33:11.927 +08:00 [ERR] Error during resource cleanup
+System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed the WebSocket connection without completing the close handshake.
+ ---> System.IO.IOException: Unable to write data to the transport connection: Удаленный хост принудительно разорвал существующее подключение..
+ ---> System.Net.Sockets.SocketException (10054): Удаленный хост принудительно разорвал существующее подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.SendAsyncForNetworkStream(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.SendAsyncForNetworkStream(ReadOnlyMemory`1 buffer, SocketFlags socketFlags, CancellationToken cancellationToken)
+   at System.Net.Sockets.NetworkStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.WriteToStreamAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.WriteWithoutBufferingAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.RawConnectionStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.CleanupResources()
+   at Z2M_Mifare.Program.<>c.<<Main>b__7_1>d.MoveNext() in G:\Prog\TimeBook\Program.cs:line 33
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.<>c.<Main>b__7_1(Object sender, ConsoleCancelEventArgs e)
+   at System.Console.HandlePosixSignal(PosixSignalContext ctx)
+   at System.Runtime.InteropServices.PosixSignalRegistration.HandlerRoutine(Int32 dwCtrlType)
+--- End of stack trace from previous location ---
+
+   --- End of inner exception stack trace ---
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+2025-03-28 09:33:11.949 +08:00 [INF] Cleaning up resources...
+2025-03-28 09:33:11.950 +08:00 [ERR] Error during resource cleanup
+System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed the WebSocket connection without completing the close handshake.
+ ---> System.IO.IOException: Unable to write data to the transport connection: Удаленный хост принудительно разорвал существующее подключение..
+ ---> System.Net.Sockets.SocketException (10054): Удаленный хост принудительно разорвал существующее подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.SendAsyncForNetworkStream(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.SendAsyncForNetworkStream(ReadOnlyMemory`1 buffer, SocketFlags socketFlags, CancellationToken cancellationToken)
+   at System.Net.Sockets.NetworkStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.WriteToStreamAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.WriteWithoutBufferingAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.RawConnectionStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.CleanupResources()
+   at Z2M_Mifare.Program.<>c.<<Main>b__7_0>d.MoveNext() in G:\Prog\TimeBook\Program.cs:line 27
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.<>c.<Main>b__7_0(Object s, EventArgs e)
+--- End of stack trace from previous location ---
+
+   --- End of inner exception stack trace ---
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+2025-03-28 09:33:14.579 +08:00 [INF] Starting RFID Server...
+2025-03-28 09:33:14.614 +08:00 [INF] Connecting to WebSocket...
+2025-03-28 09:33:14.657 +08:00 [INF] WebSocket connected successfully
+2025-03-28 09:33:14.669 +08:00 [INF] RFID reader connected to COM3
+2025-03-28 09:33:30.803 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:33:30.807 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:33:30.810 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:33:30.860 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:33:30.891 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:33:30.921 +08:00 [ERR] Checkin failed: {"error":"card_id required"}
+2025-03-28 09:33:31.361 +08:00 [DBG] Received data: No card
+2025-03-28 09:33:51.099 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:33:51.101 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:33:51.101 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:33:51.102 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:33:51.106 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:33:51.108 +08:00 [ERR] Checkin failed: {"error":"card_id required"}
+2025-03-28 09:33:51.438 +08:00 [DBG] Received data: No card
+2025-03-28 09:34:03.413 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:34:03.415 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:34:03.415 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:34:03.416 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:34:03.419 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:34:03.422 +08:00 [ERR] Checkin failed: {"error":"card_id required"}
+2025-03-28 09:34:03.653 +08:00 [DBG] Received data: No card
+2025-03-28 09:34:04.341 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:34:04.343 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:34:04.343 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:34:04.344 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:34:04.346 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:34:04.348 +08:00 [ERR] Checkin failed: {"error":"card_id required"}
+2025-03-28 09:34:04.677 +08:00 [DBG] Received data: No card
+2025-03-28 09:34:05.225 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:34:05.234 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:34:05.235 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:34:05.236 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:34:05.238 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:34:05.239 +08:00 [ERR] Checkin failed: {"error":"card_id required"}
+2025-03-28 09:34:05.460 +08:00 [DBG] Received data: No card
+2025-03-28 09:34:13.021 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:34:13.023 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:34:13.024 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:34:13.024 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:34:13.028 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:34:13.030 +08:00 [ERR] Checkin failed: {"error":"card_id required"}
+2025-03-28 09:34:13.256 +08:00 [DBG] Received data: No card
+2025-03-28 09:34:25.331 +08:00 [INF] Cleaning up resources...
+2025-03-28 09:34:25.333 +08:00 [ERR] Error processing serial port data
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Z2M_Mifare.Program.ProcessSerialPort() in G:\Prog\TimeBook\Program.cs:line 122
+2025-03-28 09:34:25.338 +08:00 [ERR] Error during resource cleanup
+System.ObjectDisposedException: The CancellationTokenSource has been disposed.
+   at System.Threading.CancellationTokenSource.Cancel()
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 273
+2025-03-28 09:34:28.661 +08:00 [INF] Starting RFID Server...
+2025-03-28 09:34:28.698 +08:00 [INF] Connecting to WebSocket...
+2025-03-28 09:34:28.741 +08:00 [INF] WebSocket connected successfully
+2025-03-28 09:34:28.751 +08:00 [INF] RFID reader connected to COM3
+2025-03-28 09:34:36.417 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:34:36.421 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:34:36.425 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:34:36.475 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:34:36.509 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:34:36.532 +08:00 [ERR] Checkin failed: {"error":"card_id required"}
+2025-03-28 09:34:36.742 +08:00 [DBG] Received data: No card
+2025-03-28 09:38:45.443 +08:00 [INF] Cleaning up resources...
+2025-03-28 09:38:45.445 +08:00 [ERR] Error processing serial port data
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Z2M_Mifare.Program.ProcessSerialPort() in G:\Prog\TimeBook\Program.cs:line 122
+2025-03-28 09:38:45.453 +08:00 [ERR] Error during resource cleanup
+System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed the WebSocket connection without completing the close handshake.
+ ---> System.IO.IOException: Unable to write data to the transport connection: Удаленный хост принудительно разорвал существующее подключение..
+ ---> System.Net.Sockets.SocketException (10054): Удаленный хост принудительно разорвал существующее подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.SendAsyncForNetworkStream(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.SendAsyncForNetworkStream(ReadOnlyMemory`1 buffer, SocketFlags socketFlags, CancellationToken cancellationToken)
+   at System.Net.Sockets.NetworkStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.WriteToStreamAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.WriteWithoutBufferingAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.RawConnectionStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.CleanupResources()
+   at Z2M_Mifare.Program.<>c.<<Main>b__7_1>d.MoveNext() in G:\Prog\TimeBook\Program.cs:line 33
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.<>c.<Main>b__7_1(Object sender, ConsoleCancelEventArgs e)
+   at System.Console.HandlePosixSignal(PosixSignalContext ctx)
+   at System.Runtime.InteropServices.PosixSignalRegistration.HandlerRoutine(Int32 dwCtrlType)
+--- End of stack trace from previous location ---
+
+   --- End of inner exception stack trace ---
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+2025-03-28 09:38:45.460 +08:00 [INF] Cleaning up resources...
+2025-03-28 09:38:45.461 +08:00 [ERR] Error during resource cleanup
+System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed the WebSocket connection without completing the close handshake.
+ ---> System.IO.IOException: Unable to write data to the transport connection: Удаленный хост принудительно разорвал существующее подключение..
+ ---> System.Net.Sockets.SocketException (10054): Удаленный хост принудительно разорвал существующее подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.SendAsyncForNetworkStream(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.SendAsyncForNetworkStream(ReadOnlyMemory`1 buffer, SocketFlags socketFlags, CancellationToken cancellationToken)
+   at System.Net.Sockets.NetworkStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.WriteToStreamAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.WriteWithoutBufferingAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.RawConnectionStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.CleanupResources()
+   at Z2M_Mifare.Program.<>c.<<Main>b__7_0>d.MoveNext() in G:\Prog\TimeBook\Program.cs:line 27
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.<>c.<Main>b__7_0(Object s, EventArgs e)
+--- End of stack trace from previous location ---
+
+   --- End of inner exception stack trace ---
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+2025-03-28 09:38:53.143 +08:00 [INF] Starting RFID Server...
+2025-03-28 09:38:53.180 +08:00 [INF] Connecting to WebSocket...
+2025-03-28 09:38:53.226 +08:00 [INF] WebSocket connected successfully
+2025-03-28 09:38:53.238 +08:00 [INF] RFID reader connected to COM3
+2025-03-28 09:39:03.304 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:39:03.308 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:39:03.311 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:39:03.358 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:39:03.389 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:39:03.426 +08:00 [ERR] Checkin failed: {"error":"card_id required"}
+2025-03-28 09:39:03.650 +08:00 [DBG] Received data: No card
+2025-03-28 09:39:19.336 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:39:19.338 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:39:19.338 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:39:19.339 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:39:19.343 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:39:19.345 +08:00 [ERR] Checkin failed: {"error":"card_id required"}
+2025-03-28 09:39:19.791 +08:00 [DBG] Received data: No card
+2025-03-28 09:39:47.880 +08:00 [DBG] Received data: Mifare[B5DAE224] 226,55989 1K (0004,08)
+2025-03-28 09:39:47.882 +08:00 [INF] Card detected: B5DAE224
+2025-03-28 09:39:47.882 +08:00 [INF] Processing card: B5DAE224
+2025-03-28 09:39:47.883 +08:00 [DBG] Message sent: {"type":"card_scanned","data":{"cardNumber":"B5DAE224"}}
+2025-03-28 09:39:47.886 +08:00 [DBG] Message sent: {"type":"card_valid","data":{"cardNumber":"B5DAE224","employee":{"id":12,"card_number":"B5DAE224","name":"artem","position":null,"created_at":"2025-03-27T07:20:33.156Z"}}
+2025-03-28 09:39:47.888 +08:00 [ERR] Checkin failed: {"error":"card_id required"}
+2025-03-28 09:39:48.221 +08:00 [DBG] Received data: No card
+2025-03-28 09:40:47.355 +08:00 [INF] Cleaning up resources...
+2025-03-28 09:40:47.357 +08:00 [ERR] Error processing serial port data
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Z2M_Mifare.Program.ProcessSerialPort() in G:\Prog\TimeBook\Program.cs:line 122
+2025-03-28 09:40:47.366 +08:00 [ERR] Error during resource cleanup
+System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed the WebSocket connection without completing the close handshake.
+ ---> System.IO.IOException: Unable to write data to the transport connection: Удаленный хост принудительно разорвал существующее подключение..
+ ---> System.Net.Sockets.SocketException (10054): Удаленный хост принудительно разорвал существующее подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.SendAsyncForNetworkStream(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.SendAsyncForNetworkStream(ReadOnlyMemory`1 buffer, SocketFlags socketFlags, CancellationToken cancellationToken)
+   at System.Net.Sockets.NetworkStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.WriteToStreamAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.WriteWithoutBufferingAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.RawConnectionStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.CleanupResources()
+   at Z2M_Mifare.Program.<>c.<<Main>b__7_1>d.MoveNext() in G:\Prog\TimeBook\Program.cs:line 33
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.<>c.<Main>b__7_1(Object sender, ConsoleCancelEventArgs e)
+   at System.Console.HandlePosixSignal(PosixSignalContext ctx)
+   at System.Runtime.InteropServices.PosixSignalRegistration.HandlerRoutine(Int32 dwCtrlType)
+--- End of stack trace from previous location ---
+
+   --- End of inner exception stack trace ---
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+2025-03-28 09:40:47.373 +08:00 [INF] Cleaning up resources...
+2025-03-28 09:40:47.374 +08:00 [ERR] Error during resource cleanup
+System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed the WebSocket connection without completing the close handshake.
+ ---> System.IO.IOException: Unable to write data to the transport connection: Удаленный хост принудительно разорвал существующее подключение..
+ ---> System.Net.Sockets.SocketException (10054): Удаленный хост принудительно разорвал существующее подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.SendAsyncForNetworkStream(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.SendAsyncForNetworkStream(ReadOnlyMemory`1 buffer, SocketFlags socketFlags, CancellationToken cancellationToken)
+   at System.Net.Sockets.NetworkStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.WriteToStreamAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.WriteWithoutBufferingAsync(ReadOnlyMemory`1 source, Boolean async)
+   at System.Net.Http.HttpConnection.RawConnectionStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.CleanupResources()
+   at Z2M_Mifare.Program.<>c.<<Main>b__7_0>d.MoveNext() in G:\Prog\TimeBook\Program.cs:line 27
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Z2M_Mifare.Program.<>c.<Main>b__7_0(Object s, EventArgs e)
+--- End of stack trace from previous location ---
+
+   --- End of inner exception stack trace ---
+   at System.Net.WebSockets.ManagedWebSocket.SendFrameLockAcquiredNonCancelableAsync(MessageOpcode opcode, Boolean endOfMessage, Boolean disableCompression, ReadOnlyMemory`1 payloadBuffer)
+   at System.Net.WebSockets.ManagedWebSocket.SendCloseFrameAsync(WebSocketCloseStatus closeStatus, String closeStatusDescription, CancellationToken cancellationToken)
+   at System.Net.WebSockets.ManagedWebSocket.CloseAsyncPrivate(WebSocketCloseStatus closeStatus, String statusDescription, CancellationToken cancellationToken)
+   at Z2M_Mifare.Program.CleanupResources() in G:\Prog\TimeBook\Program.cs:line 280

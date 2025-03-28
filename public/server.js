@@ -112,27 +112,24 @@ app.get('/api/employees/:id', async (req, res) => {
     }
 });
 
-app.get('/api/employees/:id/status', async (req, res) => {
+app.get('/api/employees/status', async (req, res) => {
     try {
-        const result = await pool.query(`
-            SELECT 
-                EXISTS(
-                    SELECT 1 FROM checkins 
-                    WHERE employee_id = $1 AND checkout_time IS NULL
-                ) as is_active,
-                COALESCE(
-                    EXTRACT(EPOCH FROM (NOW() - checkin_time))/60, 
-                    0
-                )::integer as current_session_minutes
-            FROM checkins
-            WHERE employee_id = $1 AND checkout_time IS NULL
-            LIMIT 1
-        `, [req.params.id]);
-        res.json(result.rows[0] || { is_active: false, current_session_minutes: 0 });
+      const [employees] = await db.query(`
+        SELECT 
+          e.id,
+          e.name,
+          e.card_number,
+          MAX(CASE WHEN c.checkout_time IS NULL THEN 1 ELSE 0 END) AS is_working
+        FROM employees e
+        LEFT JOIN checkins c ON e.id = c.employee_id
+        GROUP BY e.id
+      `);
+      res.json(employees);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+      console.error('Status query failed:', err);
+      res.status(500).json({ error: "Database error" });
     }
-});
+  });
 
 app.get('/api/employees/:id/checkins', async (req, res) => {
     try {
@@ -218,66 +215,64 @@ app.delete('/api/employees/:id', async (req, res) => {
 // Checkins API
 app.post('/api/checkins', async (req, res) => {
     try {
-        const { card_number } = req.body;
-        console.log(`Processing checkin for card: ${card_number}`);
-        
-        // 1. Находим сотрудника
-        const employee = await pool.query(
-            'SELECT id FROM employees WHERE card_number = $1', 
-            [card_number]
+      // Получаем card_id из тела запроса
+      const { card_id } = req.body;
+      if (!card_id) {
+        console.error('Card ID is required');
+        return res.status(400).json({ error: "card_id required" });
+      }
+  
+      // Находим сотрудника по card_id
+      const [employee] = await db.query(
+        'SELECT id FROM employees WHERE card_number = ?', 
+        [card_id]
+      );
+      
+      if (!employee) {
+        console.error('Employee not found for card:', card_id);
+        return res.status(404).json({ error: "Employee not found" });
+      }
+  
+      // Проверяем последнюю запись
+      const [lastCheck] = await db.query(
+        `SELECT * FROM checkins 
+         WHERE employee_id = ? 
+         ORDER BY checkin_time DESC 
+         LIMIT 1`,
+        [employee.id]
+      );
+  
+      const now = new Date().toISOString();
+      let action;
+  
+      if (lastCheck && !lastCheck.checkout_time) {
+        // Обновляем checkout_time
+        await db.query(
+          `UPDATE checkins SET checkout_time = ? WHERE id = ?`,
+          [now, lastCheck.id]
         );
-        
-        if (employee.rows.length === 0) {
-            return res.status(404).json({ error: 'Карта не зарегистрирована' });
-        }
-
-        const employeeId = employee.rows[0].id;
-        
-        // 2. Проверяем открытую отметку
-        const openCheckin = await pool.query(
-            `SELECT id FROM checkins 
-             WHERE employee_id = $1 AND checkout_time IS NULL
-             LIMIT 1`,
-            [employeeId]
+        action = 'checkout';
+      } else {
+        // Создаём новую запись
+        await db.query(
+          `INSERT INTO checkins (employee_id, checkin_time) VALUES (?, ?)`,
+          [employee.id, now]
         );
-        
-        if (openCheckin.rows.length === 0) {
-            // Создать новую отметку
-            result = await pool.query(
-                `INSERT INTO checkins (employee_id) 
-                 VALUES ($1) RETURNING *`,
-                [employeeId]
-            );
-            eventType = 'checkin';
-        } else {
-            // Обновить существующую
-            result = await pool.query(
-                `UPDATE checkins SET 
-                    checkout_time = NOW() 
-                 WHERE id = $1 RETURNING *`,
-                [openCheckin.rows[0].id]
-            );
-            eventType = 'checkout';
-        }
-
-        // 3. Отправляем уведомление
-        notifyClients('checkin_updated', {
-            employee_id: employeeId,
-            card_number: card_number,
-            event_type: eventType,
-            timestamp: new Date().toISOString()
-            
-        });
-
-        res.json(result.rows[0]);
+        action = 'checkin';
+      }
+  
+      // Отправляем ответ
+      res.json({ 
+        action, 
+        time: now,
+        employee_id: employee.id
+      });
+  
     } catch (err) {
-        console.error('Checkin error:', err);
-        res.status(500).json({ 
-            error: 'Ошибка сервера',
-            details: err.message 
-        });
+      console.error('Database error:', err);
+      res.status(500).json({ error: "Server error" });
     }
-});
+  });
 
 // Reports API
 app.get('/api/report', async (req, res) => {
